@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Dashboard</title>
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('pd_theme');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
+    <form id="name-form" novalidate>
+      <label for="name-input">Your name</label>
+      <input id="name-input" type="text" maxlength="100" placeholder="Enter your name" autocomplete="off" />
+      <button type="submit">Save</button>
+      <span id="name-error" role="alert" aria-live="polite"></span>
+    </form>
+  </header>
+
+  <main>
+    <section id="greeting-section" aria-label="Greeting">
+      <p id="greeting-salutation"></p>
+      <p id="greeting-time"></p>
+      <p id="greeting-date"></p>
+    </section>
+
+    <section id="timer-section" aria-label="Focus Timer">
+      <div id="timer-display">25:00</div>
+      <div id="timer-controls">
+        <button id="timer-start">Start</button>
+        <button id="timer-stop">Stop</button>
+        <button id="timer-reset">Reset</button>
+      </div>
+    </section>
+
+    <section id="todo-section" aria-label="To-Do List">
+      <form id="todo-form" novalidate>
+        <input id="todo-input" type="text" maxlength="200" placeholder="New task…" autocomplete="off" />
+        <button type="submit">Add</button>
+        <span id="todo-error" role="alert" aria-live="polite"></span>
+      </form>
+      <ul id="todo-list"></ul>
+    </section>
+
+    <section id="links-section" aria-label="Quick Links">
+      <form id="links-form" novalidate>
+        <input id="link-label-input" type="text" maxlength="50" placeholder="Label" autocomplete="off" />
+        <span id="link-label-error" role="alert" aria-live="polite"></span>
+        <input id="link-url-input" type="text" placeholder="URL" autocomplete="off" />
+        <span id="link-url-error" role="alert" aria-live="polite"></span>
+        <button type="submit">Add Link</button>
+      </form>
+      <div id="links-list"></div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
